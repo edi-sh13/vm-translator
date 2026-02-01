@@ -9,10 +9,14 @@ public class AInstruction implements AssemblyInstruction {
 
     @Override
     public String toAssembly() {
-        return "@" + value + "\n";
+        return "@%s\n".formatted(value);
     }
 
-    public static AInstruction of(String value) {
+    public static AInstruction from(String value) {
         return new AInstruction(value);
+    }
+
+    public static AInstruction from(int value) {
+        return AInstruction.from(Integer.toString(value));
     }
 }

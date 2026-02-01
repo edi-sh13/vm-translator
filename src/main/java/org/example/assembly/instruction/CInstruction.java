@@ -17,6 +17,10 @@ public class CInstruction implements AssemblyInstruction {
 
     @Override
     public String toAssembly() {
+        if (comp == null) {
+            throw new IllegalStateException("Invalid C-instruction. Comp field is required!");
+        }
+
         StringBuilder assembly = new StringBuilder();
 
         if (dest != null) {
@@ -34,6 +38,10 @@ public class CInstruction implements AssemblyInstruction {
 
     public static CInstructionBuilder withDest(String dest) {
         return new CInstructionBuilder().withDest(dest);
+    }
+
+    public static CInstructionBuilder withComp(String comp) {
+        return new CInstructionBuilder().withComp(comp);
     }
 
     public static class CInstructionBuilder {

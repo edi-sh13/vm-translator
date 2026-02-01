@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.pseudocode.PseudoCode;
+import org.example.assembly.instruction.AssemblyInstruction;
 import org.example.vm.command.VMCommand;
 
 import java.io.BufferedWriter;
@@ -15,8 +15,9 @@ public class CodeWriter {
     }
 
     public void write(VMCommand command) throws IOException {
-        PseudoCode commandPseudoCode = command.getPseudoCode();
-        this.writer.write(commandPseudoCode.toAssembly());
+        for (AssemblyInstruction instruction : command.getInstructions()) {
+            this.writer.write(instruction.toAssembly());
+        }
     }
 
     public void close() throws IOException {

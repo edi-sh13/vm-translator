@@ -1,35 +1,39 @@
 package org.example.pseudocode;
 
 import org.example.assembly.instruction.AssemblyInstruction;
-import org.example.assembly.instruction.AssemblyInstructionSequence;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PseudoCode {
-    private final List<AssemblyInstructionSequence> assemblyInstructionSequences = new ArrayList<>();
+public class PseudoCode implements InstructionSequence {
+    private final List<AssemblyInstruction> instructions;
 
-    public void addInstructionSequence(AssemblyInstructionSequence sequence) {
-        assemblyInstructionSequences.add(sequence);
+    public PseudoCode() {
+        this.instructions = new ArrayList<>();
     }
 
-    public String toAssembly() {
-        StringBuilder sb = new StringBuilder();
-
-        for (AssemblyInstructionSequence sequence : assemblyInstructionSequences) {
-            for (AssemblyInstruction instruction : sequence.getInstructions()) {
-                sb.append(instruction.toAssembly());
-            }
-        }
-
-        return sb.toString();
+    public PseudoCode(List<AssemblyInstruction> instructions) {
+        this.instructions = instructions;
     }
 
-    public static PseudoCode withInstructionSequences(AssemblyInstructionSequence... sequences) {
+    @Override
+    public void emitTo(List<AssemblyInstruction> instructions) {
+        instructions.addAll(this.instructions);
+    }
+
+    public List<AssemblyInstruction> getInstructions() {
+        return instructions;
+    }
+
+    public static InstructionSequence withAssemblyInstruction(AssemblyInstruction instruction) {
+        return new PseudoCode(List.of(instruction));
+    }
+
+    public static PseudoCode withInstructionSequences(InstructionSequence... sequences) {
         PseudoCode pseudoCode = new PseudoCode();
 
-        for (AssemblyInstructionSequence sequence : sequences) {
-            pseudoCode.addInstructionSequence(sequence);
+        for (InstructionSequence sequence : sequences) {
+            sequence.emitTo(pseudoCode.instructions);
         }
 
         return pseudoCode;

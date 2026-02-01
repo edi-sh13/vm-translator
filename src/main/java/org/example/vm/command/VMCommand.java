@@ -1,7 +1,9 @@
 package org.example.vm.command;
 
-import org.example.pseudocode.PseudoCode;
+import org.example.assembly.instruction.AssemblyInstruction;
+
+import java.util.List;
 
 public interface VMCommand {
-    PseudoCode getPseudoCode();
+    List<AssemblyInstruction> getInstructions();
 }
