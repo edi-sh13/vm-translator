@@ -1,15 +1,15 @@
 package org.example.vm.command.logical;
 
 import org.example.assembly.instruction.AssemblyInstruction;
-import org.example.pseudocode.command.assignment.AssignmentCommand;
 import org.example.pseudocode.PseudoCode;
+import org.example.pseudocode.command.assignment.AssignmentCommand;
 import org.example.pseudocode.command.conditional.ComparisonOperator;
 import org.example.pseudocode.command.conditional.ConditionalCommand;
 import org.example.vm.command.VMCommand;
 
 import java.util.List;
 
-public class EQCommand implements VMCommand {
+public class LTCommand implements VMCommand {
     @Override
     public List<AssemblyInstruction> getInstructions() {
         return PseudoCode.withInstructionSequences(
@@ -20,7 +20,7 @@ public class EQCommand implements VMCommand {
                         .minusTheVariable("addr")
                         .intoTheVariable("diff"),
                 ConditionalCommand
-                        .when("diff", ComparisonOperator.EQUALS_ZERO)
+                        .when("diff", ComparisonOperator.LESS_THAN_ZERO)
                         .then(
                                 AssignmentCommand.loadTheConstant(-1).intoThePointer("SP")
                         ).elseDo(

@@ -2,7 +2,9 @@ package org.example.pseudocode.command.conditional;
 
 public enum ComparisonOperator {
     UNCONDITIONAL("JMP"),
-    EQUALS_ZERO("JEQ");
+    EQUALS_ZERO("JEQ"),
+    LESS_THAN_ZERO("JLT"),
+    GREATER_THAN_ZERO("JGT");
 
     private final String operator;
 
