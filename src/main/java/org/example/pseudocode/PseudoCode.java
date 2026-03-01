@@ -3,6 +3,7 @@ package org.example.pseudocode;
 import org.example.assembly.instruction.AssemblyInstruction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PseudoCode implements InstructionSequence {
@@ -25,8 +26,8 @@ public class PseudoCode implements InstructionSequence {
         return instructions;
     }
 
-    public static InstructionSequence withAssemblyInstruction(AssemblyInstruction instruction) {
-        return new PseudoCode(List.of(instruction));
+    public static InstructionSequence withAssemblyInstructions(AssemblyInstruction... instructions) {
+        return new PseudoCode(Arrays.stream(instructions).toList());
     }
 
     public static PseudoCode withInstructionSequences(InstructionSequence... sequences) {

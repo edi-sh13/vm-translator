@@ -4,7 +4,8 @@ public enum ComparisonOperator {
     UNCONDITIONAL("JMP"),
     EQUALS_ZERO("JEQ"),
     LESS_THAN_ZERO("JLT"),
-    GREATER_THAN_ZERO("JGT");
+    GREATER_THAN_ZERO("JGT"),
+    NOT_EQUAL_TO_ZERO("JNE");
 
     private final String operator;
 

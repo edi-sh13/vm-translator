@@ -18,6 +18,13 @@ public class PUSHCommand implements VMCommand {
 
     @Override
     public List<AssemblyInstruction> getInstructions() {
+        if (segment.equals("constant")) {
+            return PseudoCode.withInstructionSequences(
+                    AssignmentCommand.loadTheConstant(index).intoThePointer("SP"),
+                    AssignmentCommand.increment("SP")
+            ).getInstructions();
+        }
+
         return PseudoCode.withInstructionSequences(
                 AssignmentCommand.loadTheVariable(segment).plusTheConstant(index).intoTheVariable("addr"),
                 AssignmentCommand.loadThePointer("addr").intoThePointer("SP"),

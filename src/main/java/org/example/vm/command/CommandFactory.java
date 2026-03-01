@@ -3,6 +3,9 @@ package org.example.vm.command;
 import org.example.vm.command.arithmetic.ADDCommand;
 import org.example.vm.command.arithmetic.NEGCommand;
 import org.example.vm.command.arithmetic.SUBCommand;
+import org.example.vm.command.branching.GoToCommand;
+import org.example.vm.command.branching.IfGoToCommand;
+import org.example.vm.command.branching.LabelCommand;
 import org.example.vm.command.logical.ANDCommand;
 import org.example.vm.command.logical.EQCommand;
 import org.example.vm.command.logical.GTCommand;
@@ -29,6 +32,9 @@ public class CommandFactory {
             case "eq" -> new EQCommand();
             case "lt" -> new LTCommand();
             case "gt" -> new GTCommand();
+            case "label" -> new LabelCommand(args[1]);
+            case "goto" -> new GoToCommand(args[1]);
+            case "if-goto" -> new IfGoToCommand(args[1]);
             default -> throw new IllegalArgumentException("Unknown command type: " + type);
         };
     }
